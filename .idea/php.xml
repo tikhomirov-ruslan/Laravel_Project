@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LaravelPint">
+    <laravel_pint_settings>
+      <LaravelPintConfiguration tool_path="$PROJECT_DIR$/rental-booking/vendor/bin/pint" />
+    </laravel_pint_settings>
+  </component>
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/rental-booking/vendor/composer" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/league/config" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/league/flysystem-local" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/league/uri" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/league/uri-interfaces" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/pail" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/pint" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/prompts" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/clock" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-php84" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-php85" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/carbonphp/carbon-doctrine-types" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/fruitcake/php-cors" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/guzzlehttp/uri-template" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/nunomaduro/termwind" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/graham-campbell/result-type" />
+    </include_path>
+  </component>
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/rental-booking/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>
