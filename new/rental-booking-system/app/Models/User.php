@@ -30,4 +30,8 @@ class User extends Authenticatable
             'is_active' => 'boolean',
         ];
     }
+    public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Property::class, 'owner_id');
+    }
 }

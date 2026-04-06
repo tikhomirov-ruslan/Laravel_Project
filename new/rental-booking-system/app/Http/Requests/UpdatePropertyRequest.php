@@ -12,7 +12,9 @@ class UpdatePropertyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user() && auth()->user()->role === 'owner';
+        $user = $this->user();
+        $property = $this->route('property');
+        return $user && $user->is_active && ($user->role === 'admin' || $user->id === $property->owner_id);
     }
 
     /**
