@@ -11,7 +11,7 @@
             <h2 class="text-lg font-semibold">Смотреть жильё</h2>
             <p class="mt-2 text-sm text-slate-600">Каталог квартир и апартаментов по Алматы.</p>
         </a>
-        <a href="{{ route('bookings.index') }}" class="rounded-3xl bg-white p-6 shadow-sm">
+        <a href="{{ url('/bookings') }}" class="rounded-3xl bg-white p-6 shadow-sm">
             <h2 class="text-lg font-semibold">Мои бронирования</h2>
             <p class="mt-2 text-sm text-slate-600">Будущие и завершённые брони в одном месте.</p>
         </a>
@@ -19,5 +19,5 @@
             <h2 class="text-lg font-semibold">Профиль</h2>
             <p class="mt-2 text-sm text-slate-600">Изменить имя, email и пароль.</p>
         </a>
-    </div>
+    </div> 
 </x-app-layout>
