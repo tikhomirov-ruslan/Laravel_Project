@@ -3,85 +3,62 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Api\StoreBookingRequest;
+use App\Http\Resources\BookingResource;
+use App\Models\Booking;
+use App\Services\BookingService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Gate;
 
 class BookingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct(private readonly BookingService $bookingService)
     {
-        //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function index(): AnonymousResourceCollection
     {
-        $validated = $request->validate([
-            'property_id' => 'required|exists:properties,id',
-            'start_date' => 'required|date|after:today',
-            'end_date' => 'required|date|after:start_date',
-        ]);
-        $property = Property::findOrFail($validated['property_id']);
+        $query = Booking::query()
+            ->with(['user', 'property.owner', 'property.category'])
+            ->latest();
 
-        // Проверка перекрытия бронирований
-        $overlap = Booking::where('property_id', $property->id)
-            ->where('status', '!=', 'canceled')
-            ->where(function ($q) use ($validated) {
-                $q->whereBetween('start_date', [$validated['start_date'], $validated['end_date']])
-                    ->orWhereBetween('end_date', [$validated['start_date'], $validated['end_date']])
-                    ->orWhere(function ($q) use ($validated) {
-                        $q->where('start_date', '<=', $validated['start_date'])
-                            ->where('end_date', '>=', $validated['end_date']);
-                    });
-            })->exists();
-
-        if ($overlap) {
-            return response()->json(['message' => 'Selected dates are not available'], 422);
+        if (! request()->user()->isAdmin()) {
+            $query->where('user_id', request()->user()->id);
         }
 
-        $nights = (new \Carbon\Carbon($validated['start_date']))->diffInDays($validated['end_date']);
-        $totalPrice = $property->price_per_night * $nights;
+        return BookingResource::collection($query->paginate(10));
+    }
 
-        $booking = Booking::create([
-            'user_id' => $request->user()->id,
-            'property_id' => $property->id,
-            'start_date' => $validated['start_date'],
-            'end_date' => $validated['end_date'],
-            'total_price' => $totalPrice,
-            'status' => 'confirmed',
+    public function store(StoreBookingRequest $request)
+    {
+        $booking = $this->bookingService->createBooking($request->user(), $request->validated());
+
+        return (new BookingResource($booking))
+            ->response()
+            ->setStatusCode(201);
+    }
+
+    public function show(Booking $booking): BookingResource
+    {
+        Gate::authorize('view', $booking);
+
+        return new BookingResource($booking->load(['user', 'property.owner', 'property.category', 'review']));
+    }
+
+    public function cancel(Booking $booking): JsonResponse
+    {
+        Gate::authorize('cancel', $booking);
+
+        if ($booking->status === 'canceled') {
+            return response()->json(['message' => 'Booking is already canceled.'], 422);
+        }
+
+        $booking->update(['status' => 'canceled']);
+
+        return response()->json([
+            'message' => 'Booking canceled successfully.',
+            'booking' => new BookingResource($booking->load(['user', 'property.owner', 'property.category'])),
         ]);
-
-        // Запуск события для отправки email (асинхронно)
-        event(new \App\Events\BookingCreated($booking));
-
-        return new BookingResource($booking);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

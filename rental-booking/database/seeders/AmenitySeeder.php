@@ -2,28 +2,15 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Amenity;
+use Illuminate\Database\Seeder;
 
 class AmenitySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $amenities =
-            [
-                'Wi-Fi',
-                'Кухня',
-                'Парковка',
-                'Кондиционер',
-                'Бассейн'
-            ];
-
-        foreach ($amenities as $name) {
-            Amenity::create(['name' => $name]);
+        foreach (['Wi-Fi', 'Kitchen', 'Parking', 'Air conditioning', 'Pool'] as $name) {
+            Amenity::query()->firstOrCreate(['name' => $name]);
         }
     }
 }

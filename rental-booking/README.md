@@ -1,58 +1,199 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Rental Booking System API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel-based rental booking system with authentication, role-based authorization, CRUD APIs, seed data, queue-driven email notifications, API resources, and feature tests.
 
-## About Laravel
+## Implemented Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Authentication and authorization
+  - User registration and login with Laravel Sanctum tokens
+  - Role-based access control for `admin`, `owner`, and `customer`
+  - Policies for property, booking, and review actions
+- CRUD operations
+  - Major entities: `users`, `properties`, `bookings`, `reviews`, `categories`, `amenities`
+  - Relationships:
+    - `User -> hasMany -> Property`
+    - `User -> hasMany -> Booking`
+    - `Property -> belongsToMany -> Amenity` via `amenity_property`
+    - `Property -> belongsTo -> Category`
+    - `Booking -> hasOne -> Review`
+- Validation and error handling
+  - Dedicated Form Requests for auth, properties, bookings, and reviews
+  - Consistent JSON validation errors and custom messages for key invalid cases
+- Migrations and seeders
+  - Migrations for all entities and pivot table
+  - Seeders for roles, demo users, categories, amenities, properties, and bookings
+- API documentation
+  - Endpoint list and example payloads in this README
+- Testing
+  - Feature tests for auth, role checks, booking overlap logic, and review rules
+- Laravel best practices and advanced features
+  - Sanctum token auth
+  - Policies and middleware aliases
+  - API Resource classes
+  - Service class with dependency injection
+  - Events, listeners, and queued email sending
+  - Pivot table for amenities
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Notes
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Framework: Laravel 13
+- Auth: Laravel Sanctum
+- Test runner: Pest
+- Test database: in-memory SQLite via `.env.testing`
+- Queue in testing: `sync`
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Setup
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+For development with queue worker and Vite:
 
-## Contributing
+```bash
+composer run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Seeded Accounts
 
-## Code of Conduct
+All seeded users use password `password`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- `admin@example.com` - admin
+- `owner@example.com` - owner
+- `user1@example.com` - customer
+- `user2@example.com` - customer
 
-## Security Vulnerabilities
+## API Authentication
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Use the returned Sanctum token in the `Authorization` header:
 
-## License
+```http
+Authorization: Bearer YOUR_TOKEN
+Accept: application/json
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Endpoints
+
+### Auth
+
+- `POST /api/register`
+- `POST /api/login`
+- `GET /api/me`
+- `POST /api/logout`
+
+Example register payload:
+
+```json
+{
+  "name": "Owner User",
+  "email": "owner2@example.com",
+  "password": "password",
+  "password_confirmation": "password",
+  "role": "owner",
+  "device_name": "postman"
+}
+```
+
+### Properties
+
+- `GET /api/properties`
+- `GET /api/properties/{id}`
+- `POST /api/properties` - owner/admin only
+- `PUT /api/properties/{id}` - owner/admin only, policy-protected
+- `PATCH /api/properties/{id}` - owner/admin only, policy-protected
+- `DELETE /api/properties/{id}` - owner/admin only, policy-protected
+
+Example create property payload:
+
+```json
+{
+  "title": "Central Apartment",
+  "description": "Two-bedroom apartment close to downtown.",
+  "address": "123 Main Street",
+  "price_per_night": 120,
+  "max_guests": 4,
+  "category_id": 1,
+  "amenities": [1, 2, 3]
+}
+```
+
+### Bookings
+
+- `GET /api/bookings`
+  - admin sees all bookings
+  - regular users see only their own
+- `POST /api/bookings`
+- `GET /api/bookings/{id}`
+- `PATCH /api/bookings/{id}/cancel`
+
+Example create booking payload:
+
+```json
+{
+  "property_id": 1,
+  "start_date": "2026-05-01",
+  "end_date": "2026-05-05"
+}
+```
+
+### Reviews
+
+- `POST /api/reviews`
+- `PUT /api/reviews/{id}`
+- `PATCH /api/reviews/{id}`
+- `DELETE /api/reviews/{id}`
+
+Users can review only their own completed booking, and only once per booking.
+
+Example review payload:
+
+```json
+{
+  "booking_id": 1,
+  "rating": 5,
+  "comment": "Great stay and very clean apartment."
+}
+```
+
+## Queues, Events, and Notifications
+
+When a booking is created:
+
+1. `BookingCreated` event is dispatched.
+2. `SendBookingConfirmationEmail` listener handles the event.
+3. The listener is queueable and sends the `BookingConfirmed` email.
+
+To process queue jobs outside tests:
+
+```bash
+php artisan queue:work
+```
+
+## Running Tests
+
+```bash
+php artisan test
+```
+
+## Project Structure Highlights
+
+- `app/Http/Controllers/Api` - API controllers
+- `app/Http/Requests/Api` - Form Request validation
+- `app/Http/Resources` - JSON response shaping
+- `app/Policies` - authorization logic
+- `app/Services/BookingService.php` - booking creation business logic
+- `app/Events` and `app/Listeners` - event-driven booking flow
+- `database/seeders` - essential seed data
+
+## Suggested Demo Flow
+
+1. Register or log in as an `owner`.
+2. Create a property.
+3. Log in as a `customer`.
+4. Book the property.
+5. After the booking dates pass, create a review.
+6. Log in as `admin` and inspect all bookings.

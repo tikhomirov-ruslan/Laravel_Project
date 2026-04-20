@@ -7,11 +7,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PropertyResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         return [
@@ -19,16 +14,25 @@ class PropertyResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'address' => $this->address,
-            'price_per_night' => $this->price_per_night,
+            'price_per_night' => (float) $this->price_per_night,
             'max_guests' => $this->max_guests,
-            'owner' => $this->owner->name,
-            'amenities' => $this->amenities->pluck('name'),
-            'average_rating' => $this->reviews()->avg('rating') ?? 0,
+            'owner' => [
+                'id' => $this->owner?->id,
+                'name' => $this->owner?->name,
+                'email' => $this->owner?->email,
+            ],
+            'category' => $this->category ? [
+                'id' => $this->category->id,
+                'name' => $this->category->name,
+                'slug' => $this->category->slug,
+            ] : null,
+            'amenities' => $this->amenities->map(fn ($amenity) => [
+                'id' => $amenity->id,
+                'name' => $amenity->name,
+            ])->values(),
+            'average_rating' => round((float) ($this->reviews->avg('rating') ?? 0), 1),
+            'reviews_count' => $this->reviews->count(),
             'created_at' => $this->created_at,
         ];
-
-//        return parent::toArray($request);
     }
-
-
 }

@@ -3,42 +3,34 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Api\StoreReviewRequest;
+use App\Http\Requests\Api\UpdateReviewRequest;
+use App\Http\Resources\ReviewResource;
+use App\Models\Booking;
+use App\Models\Review;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Gate;
 
 class ReviewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function store(StoreReviewRequest $request)
     {
-        //
-    }
+        $validated = $request->validated();
+        $booking = Booking::query()->with('review')->findOrFail($validated['booking_id']);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'booking_id' => 'required|exists:bookings,id',
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'required|string|max:1000',
-        ]);
-        $booking = Booking::findOrFail($validated['booking_id']);
-
-        // Проверка: бронирование принадлежит пользователю и уже завершено (end_date < today)
         if ($booking->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
-        if ($booking->end_date->isFuture()) {
-            return response()->json(['message' => 'Cannot review before stay ends'], 422);
-        }
-        if ($booking->review) {
-            return response()->json(['message' => 'Review already exists'], 422);
+            return response()->json(['message' => 'You can review only your own bookings.'], 403);
         }
 
-        $review = Review::create([
+        if ($booking->end_date->isFuture()) {
+            return response()->json(['message' => 'Cannot review a stay before it ends.'], 422);
+        }
+
+        if ($booking->review) {
+            return response()->json(['message' => 'A review already exists for this booking.'], 422);
+        }
+
+        $review = Review::query()->create([
             'booking_id' => $booking->id,
             'user_id' => $request->user()->id,
             'property_id' => $booking->property_id,
@@ -46,30 +38,26 @@ class ReviewController extends Controller
             'comment' => $validated['comment'],
         ]);
 
-        return new ReviewResource($review);
+        return (new ReviewResource($review->load(['user', 'booking', 'property'])))
+            ->response()
+            ->setStatusCode(201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(UpdateReviewRequest $request, Review $review): ReviewResource
     {
-        //
+        Gate::authorize('update', $review);
+
+        $review->update($request->validated());
+
+        return new ReviewResource($review->load(['user', 'booking', 'property']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Review $review): JsonResponse
     {
-        //
-    }
+        Gate::authorize('delete', $review);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $review->delete();
+
+        return response()->json(['message' => 'Review deleted successfully.']);
     }
 }

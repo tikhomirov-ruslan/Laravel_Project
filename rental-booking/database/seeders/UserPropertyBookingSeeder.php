@@ -2,63 +2,60 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\User;
-use App\Models\Property;
-use App\Models\Booking;
 use App\Models\Amenity;
+use App\Models\Booking;
+use App\Models\Property;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class UserPropertyBookingSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        // Создаём обычных пользователей, если их ещё нет
-        User::firstOrCreate(
+        $customer = User::query()->updateOrCreate(
             ['email' => 'user1@example.com'],
-            ['name' => 'User One', 'password' => bcrypt('password'), 'role' => 'customer']
+            ['name' => 'User One', 'password' => 'password', 'role' => 'customer']
         );
-        User::firstOrCreate(
+
+        User::query()->updateOrCreate(
             ['email' => 'user2@example.com'],
-            ['name' => 'User Two', 'password' => bcrypt('password'), 'role' => 'customer']
+            ['name' => 'User Two', 'password' => 'password', 'role' => 'customer']
         );
 
-        // Администратор
-        User::firstOrCreate(
+        $owner = User::query()->updateOrCreate(
+            ['email' => 'owner@example.com'],
+            ['name' => 'Property Owner', 'password' => 'password', 'role' => 'owner']
+        );
+
+        User::query()->updateOrCreate(
             ['email' => 'admin@example.com'],
-            ['name' => 'Admin', 'password' => bcrypt('password'), 'role' => 'admin']
+            ['name' => 'Admin', 'password' => 'password', 'role' => 'admin']
         );
 
-        // Если нет ни одного свойства, создаём 5 свойств
-        if (Property::count() == 0) {
-            $users = User::where('role', 'customer')->get();
-            if ($users->isEmpty()) {
-                $users = User::all();
-            }
-
-            Property::factory(5)->make()->each(function ($property) use ($users) {
-                $property->user_id = $users->random()->id;
-                $property->save();
-                // Привязываем случайные удобства
-                $amenities = Amenity::inRandomOrder()->take(3)->get();
-                $property->amenities()->attach($amenities);
+        if (Property::query()->count() === 0) {
+            Property::factory(5)->create([
+                'user_id' => $owner->id,
+            ])->each(function (Property $property) {
+                $amenityIds = Amenity::query()->inRandomOrder()->take(3)->pluck('id');
+                $property->amenities()->sync($amenityIds);
             });
         }
 
-        // Создаём бронирование, если ещё нет
-        if (Booking::count() == 0) {
-            $user = User::where('email', 'user1@example.com')->first();
-            $property = Property::first();
+        $property = Property::query()->first();
 
-            if ($user && $property) {
-                Booking::create([
-                    'user_id' => $user->id,
+        if ($property) {
+            Booking::query()->firstOrCreate(
+                [
+                    'user_id' => $customer->id,
                     'property_id' => $property->id,
-                    'start_date' => now()->addDays(5),
-                    'end_date' => now()->addDays(7),
+                    'start_date' => now()->addDays(5)->toDateString(),
+                ],
+                [
+                    'end_date' => now()->addDays(7)->toDateString(),
                     'total_price' => $property->price_per_night * 2,
                     'status' => 'confirmed',
-                ]);
-            }
+                ],
+            );
         }
     }
 }

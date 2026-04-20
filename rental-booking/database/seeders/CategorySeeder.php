@@ -2,15 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $categories = [
@@ -18,11 +14,14 @@ class CategorySeeder extends Seeder
             ['name' => 'Private room', 'slug' => 'private-room', 'description' => 'Your own room in shared space'],
             ['name' => 'Hotel room', 'slug' => 'hotel-room', 'description' => 'Service hotel room'],
             ['name' => 'House', 'slug' => 'house', 'description' => 'Entire house or villa'],
-            ['name' => 'Unique stay', 'slug' => 'unique-stay', 'description' => 'Cabins, castles, etc.'],
+            ['name' => 'Unique stay', 'slug' => 'unique-stay', 'description' => 'Cabins, castles, and unusual places'],
         ];
 
-        foreach ($categories as $cat) {
-            Category::create($cat);
+        foreach ($categories as $category) {
+            Category::query()->updateOrCreate(
+                ['slug' => $category['slug']],
+                $category,
+            );
         }
     }
 }
