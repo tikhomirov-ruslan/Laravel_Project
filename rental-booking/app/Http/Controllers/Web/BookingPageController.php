@@ -9,6 +9,7 @@ use App\Services\BookingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\View\View;
 
 class BookingPageController extends Controller
 {
@@ -16,7 +17,7 @@ class BookingPageController extends Controller
     {
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $query = Booking::query()
             ->with(['property.owner', 'property.category', 'review'])

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminPropertyController;
+use App\Http\Controllers\Admin\AdminReviewController;
 use App\Http\Controllers\Web\BookingPageController;
 use App\Http\Controllers\Web\PropertyPageController;
 use App\Http\Controllers\Web\ReviewPageController;
@@ -22,7 +25,9 @@ Route::view('/dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::redirect('/account', '/profile');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/my-bookings', [BookingPageController::class, 'index'])->name('my-bookings');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
@@ -31,6 +36,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/bookings/{booking}/cancel', [BookingPageController::class, 'cancel'])->name('bookings.cancel');
 
     Route::post('/bookings/{booking}/reviews', [ReviewPageController::class, 'store'])->name('reviews.store');
+    Route::patch('/reviews/{review}', [ReviewPageController::class, 'update'])->name('reviews.update');
+    Route::delete('/reviews/{review}', [ReviewPageController::class, 'destroy'])->name('reviews.destroy');
+});
+
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', AdminDashboardController::class)->name('dashboard');
+    Route::resource('properties', AdminPropertyController::class)->except('show');
+    Route::get('/reviews', [AdminReviewController::class, 'index'])->name('reviews.index');
+    Route::delete('/reviews/{review}', [AdminReviewController::class, 'destroy'])->name('reviews.destroy');
 });
 
 require __DIR__.'/auth.php';

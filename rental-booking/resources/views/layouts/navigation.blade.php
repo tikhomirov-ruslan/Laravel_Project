@@ -10,8 +10,11 @@
                 <div class="hidden items-center gap-5 md:flex">
                     <a href="{{ route('dashboard') }}" class="text-sm {{ request()->routeIs('dashboard') ? 'font-semibold text-slate-900' : 'text-slate-600' }}">Главная</a>
                     <a href="{{ route('properties.index') }}" class="text-sm {{ request()->routeIs('properties.*') ? 'font-semibold text-slate-900' : 'text-slate-600' }}">Жильё</a>
-                    <a href="{{ route('bookings.index') }}" class="text-sm {{ request()->routeIs('bookings.*') ? 'font-semibold text-slate-900' : 'text-slate-600' }}">Мои брони</a>
-                    <a href="{{ route('profile.edit') }}" class="text-sm {{ request()->routeIs('profile.*') ? 'font-semibold text-slate-900' : 'text-slate-600' }}">Профиль</a>
+                    <a href="{{ url('/bookings') }}" class="text-sm {{ request()->is('bookings') || request()->is('my-bookings') ? 'font-semibold text-slate-900' : 'text-slate-600' }}">Мои брони</a>
+                    <a href="{{ url('/profile') }}" class="text-sm {{ request()->is('profile') ? 'font-semibold text-slate-900' : 'text-slate-600' }}">Профиль</a>
+                    @if (Auth::user()->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}" class="text-sm {{ request()->routeIs('admin.*') ? 'font-semibold text-slate-900' : 'text-slate-600' }}">Админ-панель</a>
+                    @endif
                 </div>
             </div>
 
@@ -38,8 +41,11 @@
         <div class="space-y-2 px-4 py-4">
             <a href="{{ route('dashboard') }}" class="block rounded-xl px-3 py-2 text-sm text-slate-700">Главная</a>
             <a href="{{ route('properties.index') }}" class="block rounded-xl px-3 py-2 text-sm text-slate-700">Жильё</a>
-            <a href="{{ route('bookings.index') }}" class="block rounded-xl px-3 py-2 text-sm text-slate-700">Мои брони</a>
-            <a href="{{ route('profile.edit') }}" class="block rounded-xl px-3 py-2 text-sm text-slate-700">Профиль</a>
+            <a href="{{ url('/bookings') }}" class="block rounded-xl px-3 py-2 text-sm text-slate-700">Мои брони</a>
+            <a href="{{ url('/profile') }}" class="block rounded-xl px-3 py-2 text-sm text-slate-700">Профиль</a>
+            @if (Auth::user()->isAdmin())
+                <a href="{{ route('admin.dashboard') }}" class="block rounded-xl px-3 py-2 text-sm text-slate-700">Админ-панель</a>
+            @endif
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="block w-full rounded-xl px-3 py-2 text-left text-sm text-slate-700">Выйти</button>

@@ -26,7 +26,7 @@
 
             <section class="mt-6 grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
                 <div class="rounded-3xl bg-white p-8 shadow-sm">
-                    <p class="text-sm font-semibold text-orange-600">Простой сервис бронирования</p>
+                    <p class="text-sm font-semibold text-orange-600">Cервис бронирования</p>
                     <h1 class="mt-4 text-4xl font-bold leading-tight">Квартиры и апартаменты в Алматы</h1>
                     <p class="mt-4 max-w-xl text-sm leading-7 text-slate-600">
                         Смотрите доступные варианты, бронируйте жильё на нужные даты и оставляйте отзывы после проживания.

@@ -18,7 +18,7 @@
                         Rental Booking
                     </a>
                     <div class="mt-10 space-y-4">
-                        <h1 class="text-4xl font-bold leading-tight">Простой сервис для бронирования жилья в Алматы</h1>
+                        <h1 class="text-4xl font-bold leading-tight">Сервис для бронирования жилья в Алматы</h1>
                         <p class="text-sm leading-6 text-slate-300">
                             Выберите квартиру, отправьте заявку на бронирование, смотрите свои поездки и оставляйте отзывы после проживания.
                         </p>
