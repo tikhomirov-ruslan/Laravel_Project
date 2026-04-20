@@ -10,11 +10,11 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            ['name' => 'Entire apartment', 'slug' => 'entire-apartment', 'description' => 'Whole flat or apartment'],
-            ['name' => 'Private room', 'slug' => 'private-room', 'description' => 'Your own room in shared space'],
-            ['name' => 'Hotel room', 'slug' => 'hotel-room', 'description' => 'Service hotel room'],
-            ['name' => 'House', 'slug' => 'house', 'description' => 'Entire house or villa'],
-            ['name' => 'Unique stay', 'slug' => 'unique-stay', 'description' => 'Cabins, castles, and unusual places'],
+            ['name' => 'Квартира', 'slug' => 'apartment', 'description' => 'Отдельная квартира для краткосрочного проживания'],
+            ['name' => 'Апартаменты', 'slug' => 'apartments', 'description' => 'Современные апартаменты в жилых комплексах'],
+            ['name' => 'Студия', 'slug' => 'studio', 'description' => 'Компактное жильё для одного или двух гостей'],
+            ['name' => 'Дом', 'slug' => 'house', 'description' => 'Отдельный дом или коттедж'],
+            ['name' => 'Лофт', 'slug' => 'loft', 'description' => 'Просторное жильё в современном стиле'],
         ];
 
         foreach ($categories as $category) {

@@ -9,7 +9,20 @@ class AmenitySeeder extends Seeder
 {
     public function run(): void
     {
-        foreach (['Wi-Fi', 'Kitchen', 'Parking', 'Air conditioning', 'Pool'] as $name) {
+        $amenities = [
+            'Wi-Fi',
+            'Кухня',
+            'Парковка',
+            'Кондиционер',
+            'Стиральная машина',
+            'Рабочее место',
+            'Балкон',
+            'Вид на горы',
+            'Смарт ТВ',
+            'Бесконтактное заселение',
+        ];
+
+        foreach ($amenities as $name) {
             Amenity::query()->firstOrCreate(['name' => $name]);
         }
     }
