@@ -17,11 +17,17 @@ class BookingService
 
         if ($this->hasOverlap($property->id, $validated['start_date'], $validated['end_date'])) {
             throw ValidationException::withMessages([
-                'start_date' => ['Selected dates are not available for this property.'],
+                'start_date' => ['На выбранные даты жильё уже занято.'],
             ]);
         }
 
         $nights = Carbon::parse($validated['start_date'])->diffInDays(Carbon::parse($validated['end_date']));
+
+        if ($nights < 1) {
+            throw ValidationException::withMessages([
+                'end_date' => ['Бронирование должно быть минимум на 1 ночь.'],
+            ]);
+        }
 
         $booking = Booking::query()->create([
             'user_id' => $user->id,
