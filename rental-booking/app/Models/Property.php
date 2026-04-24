@@ -37,6 +37,11 @@ class Property extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function images(): HasMany
+    {
+        return $this->hasMany(PropertyImage::class)->orderBy('sort_order')->orderBy('id');
+    }
+
     public function amenities(): BelongsToMany
     {
         return $this->belongsToMany(Amenity::class);
@@ -45,5 +50,10 @@ class Property extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getPrimaryImageUrlAttribute(): string
+    {
+        return $this->images->first()?->url ?? asset('images/property-placeholder.svg');
     }
 }

@@ -6,7 +6,7 @@
         </div>
     </x-slot>
 
-    <form method="POST" action="{{ route('admin.properties.update', $property) }}" class="rounded-3xl bg-white p-6 shadow-sm">
+    <form method="POST" action="{{ route('admin.properties.update', $property) }}" enctype="multipart/form-data" class="rounded-3xl bg-white p-6 shadow-sm">
         @csrf
         @method('PUT')
         @include('admin.properties._form')

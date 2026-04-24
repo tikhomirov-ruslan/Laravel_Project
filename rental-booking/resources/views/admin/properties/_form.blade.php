@@ -44,6 +44,29 @@
     </div>
 
     <div>
+        <label class="text-sm font-medium text-slate-700" for="images">Фотографии жилья</label>
+        <input id="images" name="images[]" type="file" multiple accept=".jpg,.jpeg,.png,.webp" class="mt-2 block w-full rounded-2xl border-slate-300 bg-white">
+        <p class="mt-2 text-xs text-slate-500">Можно загрузить несколько изображений. Поддерживаются JPG, PNG и WEBP.</p>
+    </div>
+
+    @if ($property->exists && $property->images->isNotEmpty())
+        <div>
+            <p class="text-sm font-medium text-slate-700">Текущие изображения</p>
+            <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                @foreach ($property->images as $image)
+                    <label class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+                        <img src="{{ $image->url }}" alt="Фото жилья" class="h-36 w-full object-cover">
+                        <span class="flex items-center gap-3 px-4 py-3 text-sm text-slate-700">
+                            <input type="checkbox" name="delete_image_ids[]" value="{{ $image->id }}">
+                            Удалить это изображение
+                        </span>
+                    </label>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
+    <div>
         <p class="text-sm font-medium text-slate-700">Удобства</p>
         <div class="mt-3 grid gap-2 md:grid-cols-2">
             @foreach ($amenities as $amenity)

@@ -13,7 +13,7 @@ class PropertyPageController extends Controller
     public function index(Request $request): View
     {
         $query = Property::query()
-            ->with(['owner', 'category', 'amenities', 'reviews.user']);
+            ->with(['owner', 'category', 'amenities', 'reviews.user', 'images']);
 
         if ($search = trim((string) $request->input('q'))) {
             $query->where(function ($builder) use ($search) {
@@ -56,7 +56,7 @@ class PropertyPageController extends Controller
 
     public function show(Property $property): View
     {
-        $property->load(['owner', 'category', 'amenities', 'reviews.user']);
+        $property->load(['owner', 'category', 'amenities', 'reviews.user', 'images']);
 
         return view('properties.show', compact('property'));
     }

@@ -1,4 +1,21 @@
 <x-guest-layout>
+    <x-slot:visual>
+        <div class="space-y-5">
+            <div>
+                <h1 class="text-4xl font-bold leading-tight">Войдите и управляйте своими поездками</h1>
+                <p class="mt-3 text-sm leading-6 text-slate-300">
+                    Проверяйте активные брони, смотрите историю проживания и быстро возвращайтесь к понравившимся вариантам.
+                </p>
+            </div>
+
+            <img
+                src="{{ asset('images/login.svg') }}"
+                alt="Иллюстрация для страницы входа"
+                class="h-[360px] w-full rounded-[28px] object-cover"
+            >
+        </div>
+    </x-slot:visual>
+
     <div>
         <h2 class="text-3xl font-bold text-slate-900">Вход</h2>
         <p class="mt-2 text-sm text-slate-500">Войдите, чтобы смотреть брони и оформлять новые.</p>

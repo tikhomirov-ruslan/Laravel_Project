@@ -26,26 +26,23 @@
 
             <section class="mt-6 grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
                 <div class="rounded-3xl bg-white p-8 shadow-sm">
-                    <p class="text-sm font-semibold text-orange-600">Cервис бронирования</p>
+                    <p class="text-sm font-semibold text-orange-600">Сервис бронирования</p>
                     <h1 class="mt-4 text-4xl font-bold leading-tight">Квартиры и апартаменты в Алматы</h1>
                     <p class="mt-4 max-w-xl text-sm leading-7 text-slate-600">
-                        Смотрите доступные варианты, бронируйте жильё на нужные даты и оставляйте отзывы после проживания.
+                        Находите подходящее жильё, бронируйте на нужные даты и оставляйте отзывы после проживания.
                     </p>
                     <div class="mt-8 flex flex-wrap gap-3">
-                        <a href="{{ route('login') }}" class="rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white">Смотреть жильё</a>
+                        <a href="{{ route('properties.index') }}" class="rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white">Смотреть жильё</a>
                         <a href="{{ route('register') }}" class="rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700">Создать аккаунт</a>
                     </div>
                 </div>
 
-                <div class="rounded-3xl bg-slate-900 p-8 text-white shadow-sm">
-                    <h2 class="text-2xl font-bold">Что уже есть в проекте</h2>
-                    <ul class="mt-6 space-y-3 text-sm text-slate-300">
-                        <li>Регистрация и вход для пользователей</li>
-                        <li>Просмотр объектов и их удобств</li>
-                        <li>Создание бронирований по датам</li>
-                        <li>Отзывы и оценки после проживания</li>
-                        <li>Демо-данные по районам Алматы</li>
-                    </ul>
+                <div class="overflow-hidden rounded-3xl bg-slate-900 shadow-sm">
+                    <img
+                        src="{{ asset('images/almaty-booking-hero.svg') }}"
+                        alt="Современные апартаменты для бронирования в Алматы"
+                        class="h-full min-h-[320px] w-full object-cover"
+                    >
                 </div>
             </section>
         </div>

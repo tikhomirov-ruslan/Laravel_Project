@@ -8,6 +8,17 @@
 
     <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div class="space-y-6">
+            <div class="overflow-hidden rounded-3xl bg-white shadow-sm">
+                <img src="{{ $property->primary_image_url }}" alt="{{ $property->title }}" class="h-80 w-full object-cover">
+                @if ($property->images->count() > 1)
+                    <div class="grid gap-3 p-4 sm:grid-cols-3">
+                        @foreach ($property->images->take(6) as $image)
+                            <img src="{{ $image->url }}" alt="{{ $property->title }}" class="h-28 w-full rounded-2xl object-cover">
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
             <div class="rounded-3xl bg-white p-6 shadow-sm">
                 <div class="flex flex-wrap items-center gap-3">
                     <span class="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700">{{ $property->category?->name }}</span>

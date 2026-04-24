@@ -1,4 +1,21 @@
 <x-guest-layout>
+    <x-slot:visual>
+        <div class="space-y-5">
+            <div>
+                <h1 class="text-4xl font-bold leading-tight">Создайте аккаунт и бронируйте жильё онлайн</h1>
+                <p class="mt-3 text-sm leading-6 text-slate-300">
+                    Регистрация открывает доступ к бронированиям, отзывам и управлению объектами для владельцев жилья.
+                </p>
+            </div>
+
+            <img
+                src="{{ asset('images/register.svg') }}"
+                alt="Иллюстрация для страницы регистрации"
+                class="h-[360px] w-full rounded-[28px] object-cover"
+            >
+        </div>
+    </x-slot:visual>
+
     <div>
         <h2 class="text-3xl font-bold text-slate-900">Регистрация</h2>
         <p class="mt-2 text-sm text-slate-500">Создайте аккаунт гостя или владельца жилья.</p>

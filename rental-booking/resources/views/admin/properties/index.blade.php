@@ -15,11 +15,15 @@
         @foreach ($properties as $property)
             <div class="rounded-3xl bg-white p-6 shadow-sm">
                 <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                    <div>
-                        <p class="text-xs uppercase tracking-wide text-orange-600">{{ $property->category?->name }}</p>
-                        <h2 class="mt-2 text-xl font-semibold text-slate-900">{{ $property->title }}</h2>
-                        <p class="mt-2 text-sm text-slate-600">{{ $property->address }}</p>
-                        <p class="mt-2 text-sm text-slate-500">Владелец: {{ $property->owner?->name }}</p>
+                    <div class="flex gap-4">
+                        <img src="{{ $property->primary_image_url }}" alt="{{ $property->title }}" class="h-28 w-40 rounded-2xl object-cover">
+                        <div>
+                            <p class="text-xs uppercase tracking-wide text-orange-600">{{ $property->category?->name }}</p>
+                            <h2 class="mt-2 text-xl font-semibold text-slate-900">{{ $property->title }}</h2>
+                            <p class="mt-2 text-sm text-slate-600">{{ $property->address }}</p>
+                            <p class="mt-2 text-sm text-slate-500">Владелец: {{ $property->owner?->name }}</p>
+                            <p class="mt-2 text-sm text-slate-500">Изображений: {{ $property->images->count() }}</p>
+                        </div>
                     </div>
 
                     <div class="text-left md:text-right">
