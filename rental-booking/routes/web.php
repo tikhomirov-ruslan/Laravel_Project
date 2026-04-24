@@ -7,10 +7,11 @@ use App\Http\Controllers\Admin\AdminReviewController;
 use App\Http\Controllers\Web\BookingPageController;
 use App\Http\Controllers\Web\PropertyPageController;
 use App\Http\Controllers\Web\ReviewPageController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    if (auth()->check()) {
+    if (Auth::check()) {
         return redirect()->route('dashboard');
     }
 
@@ -27,17 +28,17 @@ Route::view('/dashboard', 'dashboard')
 Route::middleware('auth')->group(function () {
     Route::redirect('/account', '/profile');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/my-bookings', [BookingPageController::class, 'index'])->name('my-bookings');
+    Route::get('/my-bookings', [BookingPageController::class, 'index'])->name('web.bookings.alias');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/bookings', [BookingPageController::class, 'index'])->name('bookings.index');
-    Route::post('/properties/{property}/bookings', [BookingPageController::class, 'store'])->name('bookings.store');
-    Route::post('/bookings/{booking}/cancel', [BookingPageController::class, 'cancel'])->name('bookings.cancel');
+    Route::get('/bookings', [BookingPageController::class, 'index'])->name('web.bookings.index');
+    Route::post('/properties/{property}/bookings', [BookingPageController::class, 'store'])->name('web.bookings.store');
+    Route::post('/bookings/{booking}/cancel', [BookingPageController::class, 'cancel'])->name('web.bookings.cancel');
 
-    Route::post('/bookings/{booking}/reviews', [ReviewPageController::class, 'store'])->name('reviews.store');
-    Route::patch('/reviews/{review}', [ReviewPageController::class, 'update'])->name('reviews.update');
-    Route::delete('/reviews/{review}', [ReviewPageController::class, 'destroy'])->name('reviews.destroy');
+    Route::post('/bookings/{booking}/reviews', [ReviewPageController::class, 'store'])->name('web.reviews.store');
+    Route::patch('/reviews/{review}', [ReviewPageController::class, 'update'])->name('web.reviews.update');
+    Route::delete('/reviews/{review}', [ReviewPageController::class, 'destroy'])->name('web.reviews.destroy');
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {

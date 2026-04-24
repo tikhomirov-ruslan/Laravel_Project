@@ -17,15 +17,22 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
+      <path value="$PROJECT_DIR$/new/vendor/composer" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/composer" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/mpociot/reflection-docblock" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/brianium/paratest" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psr/clock" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psr/container" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/var-exporter" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psr/log" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpstan/phpdoc-parser" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/psy/psysh" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/filp/whoops" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/voku/portable-ascii" />
@@ -39,14 +46,17 @@
       <path value="$PROJECT_DIR$/rental-booking/vendor/league/flysystem-local" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/league/mime-type-detection" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/league/uri" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/parsedown/parsedown" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/league/uri-interfaces" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/nesbot/carbon" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/ramsey/collection" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/fidry/cpu-core-counter" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/dflydev/dot-access-data" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/shalvah/upgrader" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/pail" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/pint" />
@@ -54,10 +64,12 @@
       <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/serializable-closure" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/sanctum" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/knuckleswtf/scribe" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-file-iterator" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-invoker" />
@@ -65,6 +77,7 @@
       <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/clock" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/laravel/breeze" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/css-selector" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/deprecation-contracts" />
@@ -80,14 +93,20 @@
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/ta-tikoma/phpunit-architecture-test" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-php84" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-php85" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/pestphp/pest" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/pestphp/pest-plugin" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/pestphp/pest-plugin-arch" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/pestphp/pest-plugin-mutate" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/pestphp/pest-plugin-profanity" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/string" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/symfony/translation-contracts" />
@@ -107,6 +126,7 @@
       <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/complexity" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/pestphp/pest-plugin-laravel" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/sebastian/lines-of-code" />
@@ -118,14 +138,21 @@
       <path value="$PROJECT_DIR$/rental-booking/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/guzzlehttp/uri-template" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/nunomaduro/collision" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/nunomaduro/termwind" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/doctrine/deprecations" />
       <path value="$PROJECT_DIR$/rental-booking/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/rental-booking/vendor/predis/predis" />
     </include_path>
   </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>

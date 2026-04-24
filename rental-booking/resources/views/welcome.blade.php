@@ -32,7 +32,7 @@
                         Смотрите доступные варианты, бронируйте жильё на нужные даты и оставляйте отзывы после проживания.
                     </p>
                     <div class="mt-8 flex flex-wrap gap-3">
-                        <a href="{{ route('properties.index') }}" class="rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white">Смотреть жильё</a>
+                        <a href="{{ route('login') }}" class="rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white">Смотреть жильё</a>
                         <a href="{{ route('register') }}" class="rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700">Создать аккаунт</a>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ use App\Services\BookingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class BookingPageController extends Controller
@@ -38,18 +39,30 @@ class BookingPageController extends Controller
             'start_date' => ['required', 'date', 'after:today'],
             'end_date' => ['required', 'date', 'after:start_date'],
         ], [
+            'start_date.required' => 'Укажите дату заезда.',
             'start_date.after' => 'Дата заезда должна быть позже сегодняшнего дня.',
+            'end_date.required' => 'Укажите дату выезда.',
             'end_date.after' => 'Дата выезда должна быть позже даты заезда.',
         ]);
 
-        $this->bookingService->createBooking($request->user(), [
-            'property_id' => $property->id,
-            'start_date' => $validated['start_date'],
-            'end_date' => $validated['end_date'],
-        ]);
+        try {
+            $this->bookingService->createBooking($request->user(), [
+                'property_id' => $property->id,
+                'start_date' => $validated['start_date'],
+                'end_date' => $validated['end_date'],
+            ]);
+        } catch (ValidationException $exception) {
+            throw $exception;
+        } catch (\Throwable $exception) {
+            report($exception);
+
+            return back()->withErrors([
+                'booking' => 'Не удалось создать бронирование. Попробуйте ещё раз.',
+            ])->withInput();
+        }
 
         return redirect()
-            ->route('bookings.index')
+            ->route('web.bookings.index')
             ->with('status', 'Бронирование успешно создано.');
     }
 

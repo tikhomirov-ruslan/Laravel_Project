@@ -53,21 +53,15 @@
             <p class="mt-2 text-sm text-slate-500">Выберите даты и отправьте заявку.</p>
 
             @auth
-                <form method="POST" action="{{ route('bookings.store', $property) }}" class="mt-6 space-y-4">
+                <form method="POST" action="{{ route('web.bookings.store', $property) }}" class="mt-6 space-y-4">
                     @csrf
                     <div>
                         <label for="start_date" class="text-sm font-medium text-slate-700">Дата заезда</label>
                         <input id="start_date" name="start_date" type="date" value="{{ old('start_date') }}" class="mt-2 block w-full rounded-2xl border-slate-300">
-                        @error('start_date')
-                            <p class="mt-2 text-sm text-rose-600">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div>
                         <label for="end_date" class="text-sm font-medium text-slate-700">Дата выезда</label>
                         <input id="end_date" name="end_date" type="date" value="{{ old('end_date') }}" class="mt-2 block w-full rounded-2xl border-slate-300">
-                        @error('end_date')
-                            <p class="mt-2 text-sm text-rose-600">{{ $message }}</p>
-                        @enderror
                     </div>
                     <button type="submit" class="w-full rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white">
                         Забронировать

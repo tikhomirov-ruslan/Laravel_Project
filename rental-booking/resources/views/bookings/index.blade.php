@@ -27,7 +27,7 @@
 
                 <div class="mt-5 flex flex-col gap-4 border-t border-slate-200 pt-5">
                     @if ($booking->status !== 'canceled' && $booking->end_date?->isFuture())
-                        <form method="POST" action="{{ route('bookings.cancel', $booking) }}">
+                        <form method="POST" action="{{ route('web.bookings.cancel', $booking) }}">
                             @csrf
                             <button type="submit" class="rounded-full border border-slate-300 px-4 py-2 text-sm text-slate-700">
                                 Отменить бронирование
@@ -36,7 +36,7 @@
                     @endif
 
                     @if ($booking->end_date?->isPast() && ! $booking->review)
-                        <form method="POST" action="{{ route('reviews.store', $booking) }}" class="grid gap-3 rounded-2xl bg-slate-50 p-4">
+                        <form method="POST" action="{{ route('web.reviews.store', $booking) }}" class="grid gap-3 rounded-2xl bg-slate-50 p-4">
                             @csrf
                             <p class="text-sm font-semibold text-slate-900">Оставить отзыв</p>
                             <select name="rating" class="rounded-2xl border-slate-300 text-sm">
@@ -59,7 +59,7 @@
                             <p class="mt-2 text-sm leading-6 text-slate-600">{{ $booking->review->comment }}</p>
 
                             <div class="mt-4 grid gap-3 border-t border-slate-200 pt-4">
-                                <form method="POST" action="{{ route('reviews.update', $booking->review) }}" class="grid gap-3">
+                                <form method="POST" action="{{ route('web.reviews.update', $booking->review) }}" class="grid gap-3">
                                     @csrf
                                     @method('PATCH')
                                     <p class="text-sm font-medium text-slate-900">Редактировать отзыв</p>
@@ -74,7 +74,7 @@
                                     </button>
                                 </form>
 
-                                <form method="POST" action="{{ route('reviews.destroy', $booking->review) }}">
+                                <form method="POST" action="{{ route('web.reviews.destroy', $booking->review) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="rounded-full border border-slate-300 px-4 py-2 text-sm text-slate-700">
