@@ -39,10 +39,10 @@ class BookingPageController extends Controller
             'start_date' => ['required', 'date', 'after:today'],
             'end_date' => ['required', 'date', 'after:start_date'],
         ], [
-            'start_date.required' => 'Укажите дату заезда.',
-            'start_date.after' => 'Дата заезда должна быть позже сегодняшнего дня.',
-            'end_date.required' => 'Укажите дату выезда.',
-            'end_date.after' => 'Дата выезда должна быть позже даты заезда.',
+            'start_date.required' => __('ui.messages.start_date_required'),
+            'start_date.after' => __('ui.messages.start_date_after'),
+            'end_date.required' => __('ui.messages.end_date_required'),
+            'end_date.after' => __('ui.messages.end_date_after'),
         ]);
 
         try {
@@ -57,13 +57,13 @@ class BookingPageController extends Controller
             report($exception);
 
             return back()->withErrors([
-                'booking' => 'Не удалось создать бронирование. Попробуйте ещё раз.',
+                'booking' => __('ui.messages.booking_failed'),
             ])->withInput();
         }
 
         return redirect()
             ->route('web.bookings.index')
-            ->with('status', 'Бронирование успешно создано.');
+            ->with('status', __('ui.messages.booking_created'));
     }
 
     public function cancel(Request $request, Booking $booking): RedirectResponse
@@ -74,6 +74,6 @@ class BookingPageController extends Controller
             $booking->update(['status' => 'canceled']);
         }
 
-        return back()->with('status', 'Бронирование отменено.');
+        return back()->with('status', __('ui.messages.booking_canceled'));
     }
 }

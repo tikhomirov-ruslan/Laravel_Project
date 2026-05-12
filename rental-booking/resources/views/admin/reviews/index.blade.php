@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <div>
-            <h1 class="text-2xl font-bold text-slate-900">Модерация отзывов</h1>
-            <p class="mt-1 text-sm text-slate-500">Просмотр и удаление отзывов пользователей.</p>
+            <h1 class="text-2xl font-bold text-slate-900">{{ __('ui.admin.reviews_title') }}</h1>
+            <p class="mt-1 text-sm text-slate-500">{{ __('ui.admin.reviews_subtitle') }}</p>
         </div>
     </x-slot>
 
@@ -17,8 +17,8 @@
                     </div>
 
                     <div class="text-left md:text-right">
-                        <p class="text-sm text-slate-500">Оценка: {{ $review->rating }}/5</p>
-                        <p class="mt-1 text-sm text-slate-500">Бронь #{{ $review->booking_id }}</p>
+                        <p class="text-sm text-slate-500">{{ __('ui.admin.rating', ['rating' => $review->rating]) }}</p>
+                        <p class="mt-1 text-sm text-slate-500">{{ __('ui.admin.booking_id', ['id' => $review->booking_id]) }}</p>
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="rounded-full border border-rose-300 px-4 py-2 text-sm text-rose-700">
-                            Удалить отзыв
+                            {{ __('ui.admin.delete_review') }}
                         </button>
                     </form>
                 </div>

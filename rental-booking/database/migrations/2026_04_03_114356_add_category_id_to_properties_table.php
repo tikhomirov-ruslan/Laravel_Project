@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('properties', function (Blueprint $table) {
             $table->foreignId('category_id')
-                ->nullable()      // необязательно для обратной совместимости
+                ->nullable()      // optional for backward compatibility
                 ->constrained('categories')
-                ->nullOnDelete(); // если категорию удалят, объявление остаётся без категории
+                ->nullOnDelete(); // keep the listing when its category is deleted
         });
     }
 

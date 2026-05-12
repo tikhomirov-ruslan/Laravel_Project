@@ -10,17 +10,17 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            ['name' => 'Квартира', 'slug' => 'apartment', 'description' => 'Отдельная квартира для краткосрочного проживания'],
-            ['name' => 'Апартаменты', 'slug' => 'apartments', 'description' => 'Современные апартаменты в жилых комплексах'],
-            ['name' => 'Студия', 'slug' => 'studio', 'description' => 'Компактное жильё для одного или двух гостей'],
-            ['name' => 'Дом', 'slug' => 'house', 'description' => 'Отдельный дом или коттедж'],
-            ['name' => 'Лофт', 'slug' => 'loft', 'description' => 'Просторное жильё в современном стиле'],
+            ['name' => 'Apartment', 'slug' => 'apartment', 'description' => 'A private apartment for short-term stays'],
+            ['name' => 'Serviced apartment', 'slug' => 'apartments', 'description' => 'Modern apartments in residential complexes'],
+            ['name' => 'Studio', 'slug' => 'studio', 'description' => 'Compact housing for one or two guests'],
+            ['name' => 'House', 'slug' => 'house', 'description' => 'A private house or cottage'],
+            ['name' => 'Loft', 'slug' => 'loft', 'description' => 'A spacious home with a modern layout'],
         ];
 
         foreach ($categories as $category) {
             Category::query()->updateOrCreate(
                 ['slug' => $category['slug']],
-                $category,
+                $category
             );
         }
     }

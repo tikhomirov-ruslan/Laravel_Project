@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('booking_id')->constrained()->unique(); // один отзыв на бронь
+            $table->foreignId('booking_id')->constrained()->unique(); // one review per booking
             $table->foreignId('user_id')->constrained();
             $table->foreignId('property_id')->constrained();
             $table->tinyInteger('rating')->unsigned(); // 1-5

@@ -8,7 +8,16 @@ use App\Http\Controllers\Web\BookingPageController;
 use App\Http\Controllers\Web\PropertyPageController;
 use App\Http\Controllers\Web\ReviewPageController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/locale/{locale}', function (Request $request, string $locale) {
+    abort_unless(in_array($locale, ['en', 'ru'], true), 404);
+
+    $request->session()->put('locale', $locale);
+
+    return back();
+})->name('locale.switch');
 
 Route::get('/', function () {
     if (Auth::check()) {

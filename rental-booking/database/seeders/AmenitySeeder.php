@@ -11,15 +11,15 @@ class AmenitySeeder extends Seeder
     {
         $amenities = [
             'Wi-Fi',
-            'Кухня',
-            'Парковка',
-            'Кондиционер',
-            'Стиральная машина',
-            'Рабочее место',
-            'Балкон',
-            'Вид на горы',
-            'Смарт ТВ',
-            'Бесконтактное заселение',
+            'Kitchen',
+            'Parking',
+            'Air conditioning',
+            'Washing machine',
+            'Workspace',
+            'Balcony',
+            'Mountain view',
+            'Smart TV',
+            'Self check-in',
         ];
 
         foreach ($amenities as $name) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,15 @@
                         Rental Booking
                     </a>
 
-                    <div class="px-8 pt-8">
+                    <div class="px-8 pt-5">
+                        <div class="flex w-fit rounded-full border border-white/20 p-1 text-xs font-semibold" aria-label="{{ __('ui.nav.language') }}">
+                            @foreach (['en' => 'EN', 'ru' => 'RU'] as $locale => $label)
+                                <a href="{{ route('locale.switch', $locale) }}" class="rounded-full px-3 py-1 {{ app()->getLocale() === $locale ? 'bg-white text-slate-900' : 'text-slate-300 hover:bg-white/10' }}">{{ $label }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="px-8 pt-6">
                         {{ $visual ?? '' }}
                     </div>
                 </div>

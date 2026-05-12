@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AdminReviewController extends Controller
 {
@@ -23,6 +23,6 @@ class AdminReviewController extends Controller
     {
         $review->delete();
 
-        return redirect()->route('admin.reviews.index')->with('status', 'Отзыв удалён.');
+        return redirect()->route('admin.reviews.index')->with('status', __('ui.messages.review_deleted'));
     }
 }

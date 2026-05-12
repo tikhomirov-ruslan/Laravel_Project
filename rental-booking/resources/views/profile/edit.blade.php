@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <div>
-            <h1 class="text-2xl font-bold text-slate-900">Профиль</h1>
-            <p class="mt-1 text-sm text-slate-500">Измените данные аккаунта и пароль.</p>
+            <h1 class="text-2xl font-bold text-slate-900">{{ __('ui.profile.title') }}</h1>
+            <p class="mt-1 text-sm text-slate-500">{{ __('ui.profile.subtitle') }}</p>
         </div>
     </x-slot>
 

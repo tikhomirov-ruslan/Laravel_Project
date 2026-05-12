@@ -21,13 +21,13 @@ class ReviewPageController extends Controller
 
         if ($booking->end_date->isFuture()) {
             return back()->withErrors([
-                'review' => 'Оставить отзыв можно только после завершения проживания.',
+                'review' => __('ui.messages.review_after_stay'),
             ]);
         }
 
         if ($booking->review) {
             return back()->withErrors([
-                'review' => 'Для этого бронирования отзыв уже существует.',
+                'review' => __('ui.messages.review_exists'),
             ]);
         }
 
@@ -39,7 +39,7 @@ class ReviewPageController extends Controller
             'comment' => $validated['comment'],
         ]);
 
-        return back()->with('status', 'Спасибо, ваш отзыв сохранён.');
+        return back()->with('status', __('ui.messages.review_saved'));
     }
 
     public function update(Request $request, Review $review): RedirectResponse
@@ -48,7 +48,7 @@ class ReviewPageController extends Controller
 
         $review->update($this->validateReview($request));
 
-        return back()->with('status', 'Отзыв обновлён.');
+        return back()->with('status', __('ui.messages.review_updated'));
     }
 
     public function destroy(Review $review): RedirectResponse
@@ -57,7 +57,7 @@ class ReviewPageController extends Controller
 
         $review->delete();
 
-        return back()->with('status', 'Отзыв удалён.');
+        return back()->with('status', __('ui.messages.review_deleted'));
     }
 
     private function validateReview(Request $request): array
@@ -66,8 +66,8 @@ class ReviewPageController extends Controller
             'rating' => ['required', 'integer', 'between:1,5'],
             'comment' => ['required', 'string', 'max:1000'],
         ], [
-            'rating.required' => 'Укажите оценку от 1 до 5.',
-            'comment.required' => 'Добавьте текст отзыва.',
+            'rating.required' => __('ui.messages.rating_required'),
+            'comment.required' => __('ui.messages.comment_required'),
         ]);
     }
 }

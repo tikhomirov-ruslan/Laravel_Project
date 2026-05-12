@@ -45,7 +45,7 @@ class AdminPropertyController extends Controller
         $property->amenities()->sync($amenityIds);
         $this->storeImages($request, $property);
 
-        return redirect()->route('admin.properties.index')->with('status', 'Жильё успешно добавлено.');
+        return redirect()->route('admin.properties.index')->with('status', __('ui.messages.property_created'));
     }
 
     public function edit(Property $property): View
@@ -71,7 +71,7 @@ class AdminPropertyController extends Controller
         $this->deleteSelectedImages($request, $property);
         $this->storeImages($request, $property);
 
-        return redirect()->route('admin.properties.index')->with('status', 'Жильё успешно обновлено.');
+        return redirect()->route('admin.properties.index')->with('status', __('ui.messages.property_updated'));
     }
 
     public function destroy(Property $property): RedirectResponse
@@ -82,7 +82,7 @@ class AdminPropertyController extends Controller
 
         $property->delete();
 
-        return redirect()->route('admin.properties.index')->with('status', 'Жильё удалено.');
+        return redirect()->route('admin.properties.index')->with('status', __('ui.messages.property_deleted'));
     }
 
     private function validateProperty(Request $request): array
@@ -102,11 +102,11 @@ class AdminPropertyController extends Controller
             'delete_image_ids' => ['sometimes', 'array'],
             'delete_image_ids.*' => ['integer', 'exists:property_images,id'],
         ], [
-            'user_id.required' => 'Выберите владельца жилья.',
-            'category_id.required' => 'Выберите категорию жилья.',
-            'title.required' => 'Введите название жилья.',
-            'address.required' => 'Введите адрес.',
-            'images.*.image' => 'Загружаемые файлы должны быть изображениями.',
+            'user_id.required' => __('ui.messages.owner_required'),
+            'category_id.required' => __('ui.messages.category_required'),
+            'title.required' => __('ui.messages.title_required'),
+            'address.required' => __('ui.messages.address_required'),
+            'images.*.image' => __('ui.messages.image_required'),
         ]);
     }
 

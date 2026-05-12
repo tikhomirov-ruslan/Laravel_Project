@@ -16,22 +16,22 @@ class UserPropertyBookingSeeder extends Seeder
     {
         $guest = User::query()->updateOrCreate(
             ['email' => 'user1@example.com'],
-            ['name' => 'Алия Сейтова', 'password' => 'password', 'role' => 'customer']
+            ['name' => 'Aliya Seitova', 'password' => 'password', 'role' => 'customer']
         );
 
         $secondGuest = User::query()->updateOrCreate(
             ['email' => 'user2@example.com'],
-            ['name' => 'Нурсултан Беков', 'password' => 'password', 'role' => 'customer']
+            ['name' => 'Nursultan Bekov', 'password' => 'password', 'role' => 'customer']
         );
 
         $owner = User::query()->updateOrCreate(
             ['email' => 'owner@example.com'],
-            ['name' => 'Ермек Тулеуов', 'password' => 'password', 'role' => 'owner']
+            ['name' => 'Yermek Tuleuov', 'password' => 'password', 'role' => 'owner']
         );
 
         User::query()->updateOrCreate(
             ['email' => 'admin@example.com'],
-            ['name' => 'Администратор', 'password' => 'password', 'role' => 'admin']
+            ['name' => 'Administrator', 'password' => 'password', 'role' => 'admin']
         );
 
         $apartment = Category::query()->where('slug', 'apartment')->first();
@@ -41,58 +41,58 @@ class UserPropertyBookingSeeder extends Seeder
 
         $propertiesData = [
             [
-                'title' => 'Уютная квартира у Арбата',
-                'description' => 'Светлая квартира в центре Алматы. Рядом Арбат, метро и кафе. Подходит для пары или деловой поездки.',
-                'address' => 'ул. Панфилова, 105, Алматы',
+                'title' => 'Cozy apartment near Arbat',
+                'description' => 'A bright apartment in central Almaty, close to Arbat, the metro, and cafes. A good fit for couples or business trips.',
+                'address' => '105 Panfilov Street, Almaty',
                 'price_per_night' => 24000,
                 'max_guests' => 2,
                 'category_id' => $apartment?->id,
-                'amenities' => ['Wi-Fi', 'Кухня', 'Стиральная машина', 'Смарт ТВ'],
+                'amenities' => ['Wi-Fi', 'Kitchen', 'Washing machine', 'Smart TV'],
             ],
             [
-                'title' => 'Апартаменты с видом на Кок-Тобе',
-                'description' => 'Современные апартаменты с просторной гостиной и красивым видом на город. Идеально для отдыха семьи.',
-                'address' => 'пр. Достык, 172, Алматы',
+                'title' => 'Apartment with Kok-Tobe view',
+                'description' => 'A modern apartment with a spacious living room and a beautiful city view. Ideal for a family stay.',
+                'address' => '172 Dostyk Avenue, Almaty',
                 'price_per_night' => 38000,
                 'max_guests' => 4,
                 'category_id' => $apartments?->id,
-                'amenities' => ['Wi-Fi', 'Парковка', 'Кондиционер', 'Вид на горы', 'Балкон'],
+                'amenities' => ['Wi-Fi', 'Parking', 'Air conditioning', 'Mountain view', 'Balcony'],
             ],
             [
-                'title' => 'Студия рядом с Mega Center',
-                'description' => 'Компактная и удобная студия для одного или двух гостей. Удобный выезд на Аль-Фараби.',
-                'address' => 'ул. Розыбакиева, 247а, Алматы',
+                'title' => 'Studio near Mega Center',
+                'description' => 'A compact and comfortable studio for one or two guests with easy access to Al-Farabi Avenue.',
+                'address' => '247a Rozybakiev Street, Almaty',
                 'price_per_night' => 21000,
                 'max_guests' => 2,
                 'category_id' => $studio?->id,
-                'amenities' => ['Wi-Fi', 'Кухня', 'Рабочее место', 'Кондиционер'],
+                'amenities' => ['Wi-Fi', 'Kitchen', 'Workspace', 'Air conditioning'],
             ],
             [
-                'title' => 'Лофт в районе Золотого квадрата',
-                'description' => 'Стильный лофт с высокими потолками, удобной спальней и рабочей зоной. Хороший вариант для туристов и фрилансеров.',
-                'address' => 'ул. Кабанбай батыра, 83, Алматы',
+                'title' => 'Loft in the Golden Square',
+                'description' => 'A stylish loft with high ceilings, a comfortable bedroom, and a workspace. Great for tourists and remote workers.',
+                'address' => '83 Kabanbay Batyr Street, Almaty',
                 'price_per_night' => 32000,
                 'max_guests' => 3,
                 'category_id' => $loft?->id,
-                'amenities' => ['Wi-Fi', 'Рабочее место', 'Смарт ТВ', 'Бесконтактное заселение'],
+                'amenities' => ['Wi-Fi', 'Workspace', 'Smart TV', 'Self check-in'],
             ],
             [
-                'title' => 'Семейная квартира возле Esentai',
-                'description' => 'Просторная квартира с двумя спальнями и кухней. Подходит для семьи с детьми или гостей на несколько дней.',
-                'address' => 'ул. Сатпаева, 30/8, Алматы',
+                'title' => 'Family apartment near Esentai',
+                'description' => 'A spacious apartment with two bedrooms and a kitchen. Suitable for families with children or guests staying for several days.',
+                'address' => '30/8 Satpayev Street, Almaty',
                 'price_per_night' => 41000,
                 'max_guests' => 5,
                 'category_id' => $apartment?->id,
-                'amenities' => ['Wi-Fi', 'Кухня', 'Парковка', 'Стиральная машина', 'Балкон'],
+                'amenities' => ['Wi-Fi', 'Kitchen', 'Parking', 'Washing machine', 'Balcony'],
             ],
             [
-                'title' => 'Апартаменты у гор с тихим двором',
-                'description' => 'Тихий район, свежий воздух и удобная транспортная доступность. Отлично подойдёт для спокойного отдыха.',
-                'address' => 'мкр. Самал-2, 58, Алматы',
+                'title' => 'Mountain-side apartment with a quiet yard',
+                'description' => 'A quiet neighborhood, fresh air, and convenient transport access. A strong choice for a relaxed stay.',
+                'address' => '58 Samal-2 Microdistrict, Almaty',
                 'price_per_night' => 29000,
                 'max_guests' => 3,
                 'category_id' => $apartments?->id,
-                'amenities' => ['Wi-Fi', 'Вид на горы', 'Парковка', 'Кондиционер'],
+                'amenities' => ['Wi-Fi', 'Mountain view', 'Parking', 'Air conditioning'],
             ],
         ];
 
@@ -112,9 +112,9 @@ class UserPropertyBookingSeeder extends Seeder
             $property->amenities()->sync($amenityIds);
         }
 
-        $firstProperty = Property::query()->where('title', 'Уютная квартира у Арбата')->first();
-        $secondProperty = Property::query()->where('title', 'Апартаменты с видом на Кок-Тобе')->first();
-        $thirdProperty = Property::query()->where('title', 'Студия рядом с Mega Center')->first();
+        $firstProperty = Property::query()->where('title', 'Cozy apartment near Arbat')->first();
+        $secondProperty = Property::query()->where('title', 'Apartment with Kok-Tobe view')->first();
+        $thirdProperty = Property::query()->where('title', 'Studio near Mega Center')->first();
 
         if ($firstProperty) {
             $pastBooking = Booking::query()->updateOrCreate(
@@ -136,7 +136,7 @@ class UserPropertyBookingSeeder extends Seeder
                     'user_id' => $guest->id,
                     'property_id' => $firstProperty->id,
                     'rating' => 5,
-                    'comment' => 'Очень удобное расположение, чисто и тихо. Заселение прошло быстро.',
+                    'comment' => 'Very convenient location, clean and quiet. Check-in was quick.',
                 ]
             );
         }

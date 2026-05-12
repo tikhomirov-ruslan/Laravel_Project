@@ -2,52 +2,44 @@
 
 namespace App\Services;
 
-use App\Events\BookingCreated;
 use App\Models\Booking;
 use App\Models\Property;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 
 class BookingService
 {
-    public function createBooking(User $user, array $validated): Booking
+    public function createBooking(User $user, array $data): Booking
     {
-        $property = Property::query()->findOrFail($validated['property_id']);
+        $property = Property::query()->findOrFail($data['property_id']);
 
-        if ($this->hasOverlap($property->id, $validated['start_date'], $validated['end_date'])) {
+        if ($this->isPropertyUnavailable($property, $data['start_date'], $data['end_date'])) {
             throw ValidationException::withMessages([
-                'start_date' => ['На выбранные даты жильё уже занято.'],
+                'start_date' => [__('ui.messages.unavailable_dates')],
             ]);
         }
 
-        $nights = Carbon::parse($validated['start_date'])->diffInDays(Carbon::parse($validated['end_date']));
+        $nights = now()->parse($data['start_date'])->diffInDays(now()->parse($data['end_date']));
 
         if ($nights < 1) {
             throw ValidationException::withMessages([
-                'end_date' => ['Бронирование должно быть минимум на 1 ночь.'],
+                'end_date' => [__('ui.messages.min_one_night')],
             ]);
         }
 
-        $booking = Booking::query()->create([
+        return Booking::query()->create([
             'user_id' => $user->id,
             'property_id' => $property->id,
-            'start_date' => $validated['start_date'],
-            'end_date' => $validated['end_date'],
-            'total_price' => $property->price_per_night * $nights,
-            'status' => 'confirmed',
+            'start_date' => $data['start_date'],
+            'end_date' => $data['end_date'],
+            'total_price' => $nights * $property->price_per_night,
+            'status' => 'pending',
         ]);
-
-        $booking->load(['user', 'property.owner', 'property.category']);
-        event(new BookingCreated($booking));
-
-        return $booking;
     }
 
-    public function hasOverlap(int $propertyId, string $startDate, string $endDate): bool
+    public function isPropertyUnavailable(Property $property, string $startDate, string $endDate): bool
     {
-        return Booking::query()
-            ->where('property_id', $propertyId)
+        return $property->bookings()
             ->where('status', '!=', 'canceled')
             ->where(function ($query) use ($startDate, $endDate) {
                 $query->whereBetween('start_date', [$startDate, $endDate])
