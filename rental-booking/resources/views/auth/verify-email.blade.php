@@ -1,31 +1,36 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+    <div>
+        <h1 class="text-4xl font-semibold tracking-tight text-white">{{ __('ui.auth.verify_title') }}</h1>
+        <p class="mt-4 max-w-sm text-sm leading-6 text-white/45">
+            {{ __('ui.auth.verify_text') }}
+        </p>
     </div>
 
     @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+        <div class="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-100">
+            {{ __('ui.auth.verify_sent') }}
         </div>
     @endif
 
-    <div class="mt-4 flex items-center justify-between">
+    <div class="mt-8 space-y-4">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
 
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div>
+            <button type="submit" class="w-full rounded-xl bg-[#c7d4a5] px-6 py-3 text-sm font-semibold text-black transition hover:bg-[#d5e1b6]">
+                {{ __('ui.auth.resend_verification') }}
+            </button>
         </form>
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('Log Out') }}
+            <button type="submit" class="w-full rounded-xl border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-white/75 transition hover:border-white/25 hover:text-white">
+                {{ __('ui.nav.logout') }}
             </button>
         </form>
+
+        <a href="{{ route('home') }}" class="block w-full rounded-xl border border-white/10 bg-white/[0.06] px-6 py-3 text-center text-sm font-semibold text-white/75 transition hover:border-white/25 hover:text-white">
+            {{ __('ui.nav.home') }}
+        </a>
     </div>
 </x-guest-layout>

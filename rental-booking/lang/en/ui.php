@@ -6,6 +6,7 @@ return [
         'service' => 'Booking service',
     ],
     'nav' => [
+        'home' => 'Home',
         'properties' => 'Properties',
         'dashboard' => 'Dashboard',
         'bookings' => 'My bookings',
@@ -62,6 +63,13 @@ return [
         'reset_title' => 'New password',
         'reset_text' => 'Enter your email and set a new password.',
         'save_password' => 'Save password',
+        'confirm_title' => 'Confirm password',
+        'confirm_text' => 'Please confirm your password before continuing.',
+        'confirm_button' => 'Confirm',
+        'verify_title' => 'Email verification',
+        'verify_text' => 'Check your email and open the verification link. If the email did not arrive, send it again.',
+        'verify_sent' => 'A new verification link has been sent.',
+        'resend_verification' => 'Send verification email again',
     ],
     'properties' => [
         'title' => 'Properties in Almaty',

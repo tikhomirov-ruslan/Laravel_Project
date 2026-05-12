@@ -7,6 +7,10 @@ use Illuminate\View\View;
 
 class GuestLayout extends Component
 {
+    public function __construct(public string $background = 'images/auth-login-background.jpg')
+    {
+    }
+
     /**
      * Get the view / contents that represents the component.
      */
