@@ -44,7 +44,7 @@
 
                 <div class="overflow-hidden rounded-3xl bg-slate-900 shadow-sm">
                     <img
-                        src="{{ asset('images/almaty-booking-hero.svg') }}"
+                        src="{{ asset('images/главная_страница.jpg') }}"
                         alt="{{ __('ui.home.hero_alt') }}"
                         class="h-full min-h-[320px] w-full object-cover"
                     >
